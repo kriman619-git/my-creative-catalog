@@ -2,6 +2,8 @@
 # My Creative Catalog
 
 A full-stack application built with Node.js, Express, MongoDB Atlas, and React. Users can register, log in, and perform CRUD operations on items.
+<img width="1920" height="1080" alt="Screenshot (109)" src="https://github.com/user-attachments/assets/051c796b-a7a3-45f1-9806-fabb8b8ebeb9" />
+<img width="1920" height="1080" alt="Screenshot (108)" src="https://github.com/user-attachments/assets/b377515e-2d84-49ed-a52f-ff4f7c232ddd" />
 
 
 ## Features
