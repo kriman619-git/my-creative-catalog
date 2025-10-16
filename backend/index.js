@@ -1,21 +1,32 @@
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import connectDB from "./db.js";
-import authRoutes from "./routes/auth.js";
-import itemRoutes from "./routes/items.js";
+import authRoutes from "./routes/auth.js"; // only once
+import itemRoutes from "./routes/items.js"; // if you have item routes
 
 dotenv.config();
-connectDB();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/items", itemRoutes);
-
 const PORT = process.env.PORT || 5000;
-app.get("/", (req, res) => res.send("Creative Catalog API is running ✅"));
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected Successfully"))
+  .catch((err) => console.error("❌ MongoDB Connection Failed:", err));
+
+// Routes
+app.use("/auth", authRoutes);   // register & login
+app.use("/items", itemRoutes);  // items CRUD
+
+// Simple route
+app.get("/", (req, res) => {
+  res.send("API is working fine ✅");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
